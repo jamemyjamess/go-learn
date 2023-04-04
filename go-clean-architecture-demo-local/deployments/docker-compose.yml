@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+    private-eco-sticker-car-back-end:
+        image: private-eco-sticker-car-back-end-image
+        container_name: private-eco-sticker-car-back-end-container
+        build:
+          context: ../
+          args:
+            mode: ${MODE}
+          dockerfile: build/package/Dockerfile
+          target: server_build
+        volumes:
+          - ../:/app
+          - ../../eco-car-static:/root/eco-car-static
+          - "/etc/timezone:/etc/timezone:ro"
+          - "/etc/localtime:/etc/localtime:ro"
+        ports:
+          - "${PORT_DOCKER}:${PORT}"
+        networks:
+          - app-tier
+        restart: always
+networks:
+    app-tier:
+        driver: bridge
+
