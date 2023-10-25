@@ -22,7 +22,7 @@ func main() {
 	close(taskCh)
 
 	// Number of workers in the pool
-	numWorkers := 5
+	numWorkers := 8
 	// Create a channel to communicate errors from workers.
 	catchWorkerErrorCh := make(chan error)
 	// Start the worker pool follow by numWorkers.
